@@ -1,0 +1,134 @@
+body {
+	background-color: lightgray;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+	border: 1px solid black;
+	background-color: white;
+	height:auto;
+}
+
+
+input[type="text"]{
+	width:500px;
+}
+
+select, input{
+	margin:5px;
+}
+
+// table on admin page *********************
+.admintable{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.admintable th, .admintable td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+tr:hover{}
+
+.admintable tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.lefttab{
+	//background-color: #ffc;
+	text-align: left;
+	width:auto;
+}
+
+.righttab {
+	//background-color: #eee;
+	width:auto;
+}
+
+.description{
+	//width:400px;
+}
+
+tr.selector{
+	text-align: right;
+	background-color: red;
+}
+********************************************
+
+// table on user page for rma's *********************
+
+.userrmatable tr:nth-child(even) {
+	//background-color: #f2f2f2;
+}
+
+
+
+
+
+
+
+
+********************************************
+select {
+	width:200px;
+}
+
+input[type="submit"] {
+	padding: 5px;
+	color:#fff;
+	background: #0098cb;
+	width:200px;
+	margin:10px;
+	margin-top: 0px;
+	border-radius: 3px;
+	border:0px;
+	cursor: pointer;
+	text-align: center;
+}
+
+input[type="submit"]:hover {
+	background: #00b8eb;
+}
+
+textarea{
+	width:600px;
+	margin:5px;
+	height: 200px;
+}
+
+#logoutlink {
+	text-align: center;
+	border-radius: 3px;
+	border: 1px solid lightgray;
+	padding:10px;
+	margin:10px;
+}
+
+
+#newuserarea {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	padding: 20px;
+	margin-top: 60px;
+	width:50%;
+}
+
+#newusersubmitbutton{
+	padding:10px;
+	margin:auto;
+	//border: 1px solid black;
+	width:40%;
+}
+
+#message {
+	background-color: green;
+	width: 300px;
+}
+
+
+
+
+
