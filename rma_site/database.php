@@ -2,7 +2,7 @@
 
 	function database_connection() {
 		// set up connection variables
-		$host = 'localhost!!';
+		$host = 'localhost';
 		$username = 'root';
 		$password = '';
 		$database = 'rma_site_db';
