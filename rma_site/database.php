@@ -2,10 +2,7 @@
 
 	function database_connection() {
 		// set up connection variables
-		$host = 'localhos';
-		$username = 'root';
-		$password = '';
-		$database = 'rma_site_db';
+		require('../credentials.php');
 
 		// connect to the database
 		try{
