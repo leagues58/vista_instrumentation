@@ -13,7 +13,7 @@
 
 
 	<div class="header">
-		<a href="index.php">Vista Instrumentation</a>
+		<a href="../index.php">Vista Instrumentation</a>
 	</div> 
 
 	<?php if(!empty($message)) { ?>

@@ -17,7 +17,7 @@
 	<body>
 
 		<div class="header">
-			<a href="index.php">Vista Instrumentation</a>
+			<a href="../index.php">Vista Instrumentation</a>
 		</div> 
 
 			<h2>Please <a href="login.php">Login</a> or <a href="register.php">Register</a></h2>
