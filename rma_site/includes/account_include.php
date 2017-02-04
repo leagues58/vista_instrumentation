@@ -33,50 +33,38 @@
 		$strVehicle = $_POST['vehicle'];
 		$description = $_POST['description'];
 		$part = $_POST['part'];
-		submitRma($strVehicle, $part, $description, $user['user_id']);
+		$bSaveToAccout = $_POST['savetoaccount'];
+		submitRma($strVehicle, $part, $description, $user['user_id'], $bSaveToAccout);
 	}
 
 	// set up pre-filled address fields, if available
 	if (!empty($user['user_address'])){
 		$strAddressPlaceholder = $user['user_address'];
-	}  else {
-		$strAddressPlaceholder = "Address";
 	}
 
 	if (!empty($user['user_city'])){
 		$strCityPlaceholder = $user['user_city'];
-	}  else {
-		$strCityPlaceholder = "City";
-	}	
+	} 
 
 	if (!empty($user['user_state'])){
 		$strStatePlaceholder = $user['user_state'];
-	}  else {
-		$strStatePlaceholder = "State";
 	}
 
 	if (!empty($user['user_zip'])){
 		$strZipPlaceholder = $user['user_zip'];
-	}  else {
-		$strZipPlaceholder = "ZIP";
 	}
 
 	if (!empty($user['user_country'])){
 		$strCountryPlaceholder = $user['user_country'];
-	}  else {
-		$strCountryPlaceholder = "Country";
 	}
-
 	if (!empty($user['user_phone'])) {
 		$strPhonePlaceholder = $user['user_phone'];
-	} else {
-		$strPhonePlaceholder = "(XXX-XXX-XXXX)";
 	}
 
 
 	// local functions ****************************************************************************************************************
 
-	function submitRma($strVehicle, $part, $description, $user_id) {
+	function submitRma($strVehicle, $part, $description, $user_id, $bSaveToAccout) {
 
 		$connection = database_connection();
 
@@ -95,18 +83,44 @@
 		$record->bindParam(':user', $user_id);
 
 		// execute SQL statement
-		if($record->execute()) {
-
-			// get varibles to send to print out page
-			$id = $connection->lastInsertId();
-			$_SESSION['rma_number'] = $id;
-
-			// redirect to print out page
-			Header("Location: printOut.php");
-			
-		} else {
+		try {
+			$record->execute();	
+		} catch(PDOException $e) {
 			$message = "Could not submit RMA.  Please try again.";
 		}
+
+		// get varibles to send to print out page
+		$id = $connection->lastInsertId();
+		$_SESSION['rma_number'] = $id;
+
+		// save if address info, if boolean set
+		if($bSaveToAccout) {
+			$strSQL = 	"UPDATE user_table set 
+							user_address = :address,
+							user_city = :city,
+							user_state = :state,
+							user_zip = :zip,
+							user_country = :country,
+							user_phone = :phone
+						WHERE
+							user_id = :user";
+
+			$record = $connection->prepare($strSQL);
+
+			$record->bindParam(':address', $_POST['address']);
+			$record->bindParam(':city', $_POST['city']);
+			$record->bindParam(':state', $_POST['state']);
+			$record->bindParam(':zip', $_POST['zip']);
+			$record->bindParam(':country', $_POST['country']);
+			$record->bindParam(':phone', $_POST['phone']);
+			$record->bindParam(':user', $user_id);
+
+			$record->execute();
+		}
+
+		// redirect to print out page
+		Header("Location: printOut.php");
+
 	
 	}
 

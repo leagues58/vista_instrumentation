@@ -6,7 +6,7 @@
 			$user = NULL;
 			$strSQL =	"SELECT 
 							user_id, user_name, user_email, user_address, user_city, user_state, user_zip, user_country,
-							 user_company, user_registration_date, user_is_admin
+							 user_phone, user_company, user_registration_date, user_is_admin
 						FROM user_table
 						WHERE
 							user_id = :id";

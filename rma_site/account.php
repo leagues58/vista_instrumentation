@@ -31,8 +31,9 @@
 	      		<?php if(!empty($message)) { ?>
 					<p><?=$message?></p>
 				<?php } ?>
-	      		<form action="account.php" method="POST" class="form-horizontal" id="rmaform">
+	      		<form action="account.php" method="POST" id="rmaform">
 	      			<table class="userrmatable">
+	      				<th class="userrmatable">Issue Description</th>
 	      				<tr>
 	      					<td class="lefttab">
 	      						<b>Vehicle:</b>
@@ -49,7 +50,7 @@
 		      				<td class="righttab">
 								<select name="part">
 									<option>Camera Tube</option>
-									<option>Main Section</option>
+									<option>System Unit</option>
 									<option>Other</option>
 								</select>
 							</td>
@@ -67,13 +68,13 @@
 	      				<tr>
 	      					<td><hr></td><td><hr></td>
 	      				</tr>
-	      			
+	      				<th class="submitrmatable">Contact Information</th>
 	      				<tr>
 	      					<td class="lefttab">
 	      						<b>Return Address:</b>
 	      					</td>
 	      					<td class="righttab">
-	      						<input type="text" placeholder="<?=$strAddressPlaceholder ?>" name="address" value="">
+	      						<input type="text" placeholder="Address" name="address" value="<?=$strAddressPlaceholder ?>">
 	      					</td>	
 	      				</tr>
 
@@ -82,7 +83,7 @@
 	      						<b>City:</b>
 	      					</td>
 	      					<td class="righttab">
-	      						<input type="text" placeholder="<?=$strCityPlaceholder?>" name="city" value="">
+	      						<input type="text" placeholder="City" name="city" value="<?=$strCityPlaceholder?>">
 	      					</td>	
 	      				</tr>
 
@@ -91,7 +92,7 @@
 	      						<b>State:</b>
 	      					</td>
 	      					<td class="righttab">
-	      						<input type="text" placeholder="<?=$strStatePlaceholder?>" name="state" value="">
+	      						<input type="text" placeholder="State" name="state" value="<?=$strStatePlaceholder?>">
 	      					</td>	
 	      				</tr>
 
@@ -100,7 +101,7 @@
 	      						<b>Zip Code:</b>
 	      					</td>
 	      					<td class="righttab">
-	      						<input type="text" placeholder="<?=$strZipPlaceholder?>" name="zip" value="">
+	      						<input type="text" placeholder="ZIP" name="zip" value="<?=$strZipPlaceholder?>">
 	      					</td>	
 	      				</tr>
 						<tr>
@@ -108,7 +109,7 @@
 	      						<b>Country:</b>
 	      					</td>
 	      					<td class="righttab">
-	      						<input type="text" placeholder="<?=$strCountryPlaceholder?>" name="country" value="">
+	      						<input type="text" placeholder="Country" name="country" value="<?=$strCountryPlaceholder?>">
 	      					</td>	
 	      				</tr>
 	      				<tr>
@@ -116,11 +117,11 @@
 	      						<b>Phone Number:</b>
 	      					</td>
 	      					<td class="righttab">
-	      						<input type="text" placeholder="<?=$strPhonePlaceholder?>" name="phone" value="">
+	      						<input type="text" placeholder="(XXX) XXX-XXXX)" name="phone" value="<?=$strPhonePlaceholder?>">
 	      					</td>	
 	      				</tr>
 	      				
-	      				<tr><td><input type="checkbox" checked> Save Address to Account</td></tr>
+	      				<tr><td><input type="checkbox" checked name="savetoaccount"> Save Address to Account</td></tr>
 	      				<tr><td><hr></td><td><hr></td></tr>
 	      				<tr>
 	      					<td colspan=2>

@@ -4,9 +4,11 @@ body {
 }
 
 .container {
-	border: 1px solid black;
+	//border: 1px solid black;
 	background-color: white;
 	height:auto;
+	margin-top:10px;
+	margin-bottom: 10px;
 }
 
 
@@ -54,22 +56,7 @@ tr.selector{
 	text-align: right;
 	background-color: red;
 }
-********************************************
 
-// table on user page for rma's *********************
-
-.userrmatable tr:nth-child(even) {
-	//background-color: #f2f2f2;
-}
-
-
-
-
-
-
-
-
-********************************************
 select {
 	width:200px;
 }
