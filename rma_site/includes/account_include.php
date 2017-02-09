@@ -164,6 +164,7 @@
 				<th class='lefttab'>Filed By</th>
 				<th class='lefttab'>Company</th>
 				<th class='lefttab'>Is Resolved</th>
+				<th class='lefttab'></th>
 			</tr>
 			<?php
 			while($results = $record->fetch(PDO::FETCH_OBJ)) {
@@ -178,7 +179,11 @@
 					echo "<td id ='". $results->rma_id . "' ></td>";
 				} else {
 					echo "<td>Yes</td>";	
-				}
+				}?>
+				<td><button onClick='window.open("notes.php?id=<?= $results->rma_id?>", "", "resizable=yes, width=800, height=600px top=50, left=200");'>Notes</button></td>
+				<?php
+				
+				
 				
 				echo "</tr>";
 			} ?>

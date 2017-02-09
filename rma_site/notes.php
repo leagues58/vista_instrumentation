@@ -33,7 +33,9 @@
 	?>
 
 
-
+		<?php
+			if ($user["user_is_admin"]) {
+		?>
 		<hr>
 		<h3>Add Note</h3>
 		
@@ -44,7 +46,7 @@
 			<input type="submit" name="sumbit">	
 		</form>
 		
-
+		<?php } ?>
 
 
 	</body>

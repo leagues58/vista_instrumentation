@@ -15,6 +15,9 @@
 
 	// get database connection
 	$connection = database_connection();
+	
+	// get user info
+	$user = gf_get_user_info($connection);
 
 
 	// declare variables
