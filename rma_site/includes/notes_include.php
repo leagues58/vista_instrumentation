@@ -30,7 +30,8 @@
 	if(!empty($_POST['notetext'])){
 
 		// first, see if there is an existing note header
-		$strSQL = "	SELECT nh_id 
+		$strSQL = "	SELECT 
+						nh_id 
 					FROM note_header_table
 					WHERE 
 						rma_id = :id";
@@ -92,8 +93,10 @@
 	// load in all the notes
 	$strSQL = 	"SELECT 
 					nht.nh_id, nt.note_text, nt.note_date_entered
-				FROM note_header_table nht 
-				INNER JOIN note_table nt
+				FROM rma_table rt
+				LEFT JOIN note_header_table nht 
+					ON rt.rma_id = nht.rma_id
+				LEFT JOIN note_table nt
 					ON nht.nh_id = nt.nh_id
 				WHERE 
 					nht.rma_id = :id";
@@ -102,16 +105,7 @@
 	$records->bindParam(':id', $lngRMAID);
 	$records->execute();
 
-	while($results = $records->fetch(PDO::FETCH_OBJ)) { ?>
-		<p>
-			<?= $results->note_text?>
 
-		</p>
-	
-
-
-	<?php
-	}
 
 
 ?>

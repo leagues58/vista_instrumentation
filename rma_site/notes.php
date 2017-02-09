@@ -15,12 +15,26 @@
 
 	<body>
 		<h2>Notes for RMA #<?=$lngRMAID?></h2>
+		<hr>
 		<?php echo $message;?>
 
 
+		<?php
+			while($results = $records->fetch(PDO::FETCH_OBJ)) { ?>
+		<div class="note">
+			<?= $results->note_text?>
+			<p class="date"><?= $results->note_date_entered?></p>
+			
+
+		</div>
+	
+	<?php
+	}
+	?>
 
 
 
+		<hr>
 		<h3>Add Note</h3>
 		
 
