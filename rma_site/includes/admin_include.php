@@ -173,7 +173,8 @@
 				} else {
 					echo "<td>Yes</td>";	
 				}?>
-				<td><button onClick='window.open("notes.php?id=<?= $results->rma_id?>", "", "resizable=yes, width=700, height=400px");'>Notes</button></td>
+			<td><a href="#" onclick='window.open("notes.php?id=<?= $results->rma_id?>", "", "resizable=yes, width=800, height=600px top=50, left=200");'>Notes</a</td>
+			
 				<?php
 				echo "</tr>";
 			} ?>
