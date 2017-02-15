@@ -106,9 +106,11 @@
 
 	$records = $connection->prepare($strSQL);
 	$records->bindParam(':id', $lngRMAID);
-	$records->execute();
-
-
+	try {
+		$records->execute();	
+	} catch(PDOException $e) {
+		$message = "There are no notes for the RMA yet.";
+	}
 
 
 ?>

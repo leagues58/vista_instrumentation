@@ -24,6 +24,9 @@
 		<div class="note">
 			<?= $results->note_text?>
 			<p class="date"><?= $results->note_date_entered?></p>
+			<a href="#" onclick="">Edit</a>
+			<a href="#" onclick="">Delete</a>
+			
 			
 
 		</div>
