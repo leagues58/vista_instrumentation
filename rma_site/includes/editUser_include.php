@@ -8,7 +8,7 @@
 	}
 
 	// imports 
-	require 'database.php';
+	require (__DIR__.'/../database.php');
 
 	// get a database connection 
 	$connection = database_connection();

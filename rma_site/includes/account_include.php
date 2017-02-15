@@ -9,8 +9,8 @@
 	}
 
 	// imports
-	require ('database.php');
-	require ('userinfo.php');
+	require (__DIR__.'/../database.php');
+	require (__DIR__.'/../userinfo.php');
 
 	// variables
 	$connection;

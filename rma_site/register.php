@@ -1,5 +1,5 @@
 <?php
-	require ('includes/register_include.php');
+	require (__DIR__.'/includes/register_include.php');
 ?>
 
 

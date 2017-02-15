@@ -2,7 +2,7 @@
 
 	function database_connection() {
 		// set up connection variables
-		require('../credentials.php');
+		require(__DIR__.'/../credentials.php');
 
 		// connect to the database
 		try{

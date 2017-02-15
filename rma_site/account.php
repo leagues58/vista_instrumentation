@@ -1,5 +1,5 @@
 <?php
-	require ('includes/account_include.php');
+	require (__DIR__.'/includes/account_include.php');
 ?>
 
 

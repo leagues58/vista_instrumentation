@@ -13,7 +13,7 @@
 	if(!empty($_POST['email']) && !empty($_POST['password'])){
 		
 		// imports 
-		require 'database.php';
+		require (__DIR__.'/../database.php');
 
 		// get a database connection 
 		$connection = database_connection();

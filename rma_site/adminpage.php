@@ -1,4 +1,4 @@
-<?php require("includes/admin_include.php");?>
+<?php require(__DIR__.'/includes/admin_include.php');?>
 
 <!DOCTYPE html>
 <html>

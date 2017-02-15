@@ -1,5 +1,5 @@
 <?php
-	require ('includes/printOut_include.php');
+	require (__DIR__.'/includes/printOut_include.php');
 ?>
 
 <html>

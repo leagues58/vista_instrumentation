@@ -7,8 +7,8 @@
 	}
 
 	// imports
-	require('database.php');
-	require 'userinfo.php';
+	require(__DIR__.'/../database.php');
+	require(__DIR__.'/../userinfo.php');
 
 	// get a database connection
 	$connection = database_connection();

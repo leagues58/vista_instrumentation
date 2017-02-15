@@ -9,7 +9,7 @@
 	}
 
 	// imports
-	require ('database.php');
+	require (__DIR__.'/../database.php');
 
 
 	// get the database connection

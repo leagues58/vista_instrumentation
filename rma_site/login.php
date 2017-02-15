@@ -1,5 +1,5 @@
 <?php
-	require ('includes/login_include.php');
+	require (__DIR__.'/includes/login_include.php');
 ?>
 
 <!DOCTYPE html>

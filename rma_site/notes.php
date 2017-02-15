@@ -1,5 +1,5 @@
 <?php 
-	require('includes/notes_include.php');
+	require(__DIR__.'/includes/notes_include.php');
 ?>
 
 

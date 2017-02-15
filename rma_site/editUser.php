@@ -1,4 +1,4 @@
-<?php require("includes/editUser_include.php");?>
+<?php require(__DIR__.'/includes/editUser_include.php');?>
 
 <!DOCTYPE html>
 <html>
