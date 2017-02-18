@@ -20,7 +20,8 @@
 	$strZipPlaceholder = "";
 	$strCountryPlaceholder = "";
 	$strPhonePlaceholder = "";
-
+	$bSaveAddressToAccount = false;
+	
 
 	// get database connection
 	$connection = database_connection();
@@ -33,8 +34,8 @@
 		$strVehicle = $_POST['vehicle'];
 		$description = $_POST['description'];
 		$part = $_POST['part'];
-		$bSaveToAccout = $_POST['savetoaccount'];
-		submitRma($strVehicle, $part, $description, $user['user_id'], $bSaveToAccout);
+		$bSaveAddressToAccount = $_POST['savetoaccount'];
+		submitRma($strVehicle, $part, $description, $user['user_id'], $bSaveAddressToAccount);
 	}
 
 	// set up pre-filled address fields, if available
@@ -64,7 +65,7 @@
 
 	// local functions ****************************************************************************************************************
 
-	function submitRma($strVehicle, $part, $description, $user_id, $bSaveToAccout) {
+	function submitRma($strVehicle, $part, $description, $user_id, $bSaveAddressToAccount) {
 
 		$connection = database_connection();
 
@@ -94,7 +95,7 @@
 		$_SESSION['rma_number'] = $id;
 
 		// save if address info, if boolean set
-		if($bSaveToAccout) {
+		if($bSaveAddressToAccount) {
 			$strSQL = 	"UPDATE user_table set 
 							user_address = :address,
 							user_city = :city,
@@ -188,16 +189,6 @@
 			} ?>
 
 		</table>
-
-
-
-
-
-
-
-
-
-
 
 
 <?php

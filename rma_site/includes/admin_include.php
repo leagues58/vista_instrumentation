@@ -84,47 +84,38 @@
 		$connection = database_connection();
 		$records = $connection->prepare($strSQL);
 		$records->execute();
+		?>
 
-
-		echo 	"
-					<script>
-						jQuery(document).ready(function($) {
-    						$('td').hover(function() {
-        						
-    						});
-						});
-					</script>
-
-				";
-
-		echo "<table class='admintable'>";
-		echo("<tr>
+		<table class='admintable'>
+			<tr>
 				<th class='lefttab'>User Name</th>
 				<th class='lefttab'>User Email</th>
 				<th class='lefttab'>User Registration Date</th>
 				<th class='lefttab'>User Company</th>
 				<th class='lefttab'>Admin</th>
 				<th class='lefttab'>Account Created</th>
-			</tr>");
+			</tr>
 
-		while($results = $records->fetch(PDO::FETCH_OBJ)) {
-			echo("<tr>");
+		<?php while($results = $records->fetch(PDO::FETCH_OBJ)) {  ?>
+			<tr>
 			
-			echo("<td class='righttab'>" . $results->user_name . "</td>");
-			echo("<td class='righttab'>" . $results->user_email . "</td>");
-			echo("<td class='righttab'>" . substr($results->user_registration_date,0,10) . "</td>");
-			echo("<td class='righttab'>" . $results->user_company . "</td>");
-			echo("<td class='righttab'>" . $results->user_is_admin . "</td>");
-			echo("<td class='righttab'>" . $results->user_created . "</td>");
-			echo("<td class='editfield'><a href='editUser.php?".$results->user_id."'>Edit</a></td>");
-			echo("</tr>");
+				<td class="righttab"> <?=$results->user_name?> </td>
+				<td class="righttab"> <?= $results->user_email?> </td>
+				<td class="righttab"> <?= substr($results->user_registration_date,0,10)?> </td>
+				<td class="righttab"> <?= $results->user_company ?> </td>
+				<td class="righttab"> <?= $results->user_is_admin ?> </td>
+				<td class="righttab"> <?= $results->user_created ?> </td>
+				<td class="righttab"> <a href='#' onclick='window.open("editUser.php?id=<?= $results->user_id?>", "", "resizable=yes, width=300, height=500px top=50, left=200");'>Edit</a></td>
+			</tr>
+		<?php }
+ 		?>
+
+		</table>
+	<?php 
 		}
+		?>
 
-
-		echo "</table>";
-	}
-
-
+<?php
 	function displayRMAs() {
 
 		$strSQL = 	"SELECT 
@@ -160,23 +151,26 @@
 				<th class='lefttab'></th>
 			</tr>
 			<?php
-			while($results = $record->fetch(PDO::FETCH_OBJ)) {
-				echo "<tr>";
-				echo "<td>". $results->rma_id . "</td>";
-				echo "<td>". $results->rma_vehicle . "</td>";
-				echo "<td class='description'>". $results->rma_description . "</td>";
-				echo "<td>". substr($results->rma_date_filed,0,10) . "</td>"; 
-				echo "<td>". $results->user_name . "</td>"; 
-				echo "<td>". $results->user_company . "</td>"; 
-				if(!$results->rma_is_resolved) { 
-					echo "<td id ='". $results->rma_id . "' ><input type='checkbox' name='". $results->rma_id ." '></td>";
-				} else {
-					echo "<td>Yes</td>";	
-				}?>
+			while($results = $record->fetch(PDO::FETCH_OBJ)) { ?>
+				<tr>
+				<td> <?=$results->rma_id?> </td>
+				<td> <?=$results->rma_vehicle?> </td>
+				<td class='description'> <?= $results->rma_description ?> </td>
+				<td> <?=substr($results->rma_date_filed,0,10) ?> </td>
+				<td> <?=$results->user_name ?> </td>
+				<td> <?=$results->user_company ?> </td>
+
+				<?php 
+				if(!$results->rma_is_resolved) { ?>
+					<td id =' <?=$results->rma_id?>' ><input type='checkbox' name='<?=$results->rma_id?>'></td>
+				<?php } else { ?>
+					<td>Yes</td>	
+				<?php }
+				?>
 			<td><a href="#" onclick='window.open("notes.php?id=<?= $results->rma_id?>", "", "resizable=yes, width=800, height=600px top=50, left=200");'>Notes</a</td>
-			
+				</tr>
+							
 				<?php
-				echo "</tr>";
 			} ?>
 
 		</table>

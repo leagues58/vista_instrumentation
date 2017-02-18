@@ -9,19 +9,37 @@
 
 	// imports 
 	require (__DIR__.'/../database.php');
+	
+	
+	// set up variables
+	$lngUserID = "";
+	$strMessage = "";
+	$strUserName = "";
+	$strUserEmail = "";
+	$strUserAddress = "";
+	$strUserCity = "";
+	$strUserState = "";
+	$strUserZip = "";
+	$strUserCountry = "";
+	$strUserPhone = "";
+	$strUserCompany = "";
+	$bIsAdmin = "";
+
 
 	// get a database connection 
 	$connection = database_connection();
 
 	// get the rma_id from the querystring
-	$lngUserID = $_SERVER["QUERY_STRING"];
-
+	$lngUserID = $_GET['id'];
+	
 	// see if form is submitted and handle if so
-	if(!empty($_POST['userName']) && !empty($_POST['userEmail'])){
+	if(!empty($_POST['infosubmit'])){
 
 		// prepare SQL statement
 		$strSQL =	"UPDATE user_table
-					 SET user_name = :name, user_email = :email, user_address = :address, user_city = :city, user_state = :state, user_zip = :zip, user_country = :country, user_phone = :phone, user_company = :company, user_is_admin = :admin
+					 SET 
+						user_name = :name, user_email = :email, user_address = :address, user_city = :city, user_state = :state, user_zip = :zip, 
+						user_country = :country, user_phone = :phone, user_company = :company
 					 WHERE 
 					 	user_id = :userid";
 
@@ -37,7 +55,6 @@
 		$record->bindParam(':country', $_POST['userCountry']);
 		$record->bindParam(':phone', $_POST['userPhone']);
 		$record->bindParam(':company', $_POST['userCompany']);
-		$record->bindParam(':admin', $_POST['userIsAdmin']);
 		$record->bindParam(':userid', $lngUserID);
 		
 		// execute SQL statement
@@ -48,20 +65,32 @@
 			$strMessage = "Could not update user info.  Please try again.";
 		}
 	}
+	
+	if(!empty($_POST['passwordsubmit'])){
+		$strSQL =	"UPDATE user_table
+					 SET 
+						user_password = NULL,
+					 	user_created = 0
+					WHERE 
+					 	user_id = :userid";
+					
 
+		$record = $connection->prepare($strSQL);
+		$record->bindParam(':userid', $lngUserID);
+		
+		
+		// execute SQL statement
+		try {
+			$record->execute();	
+			$strMessage = "Password has been reset";
+		} catch(PDOException $e) {
+			$strMessage = "Failed to reset password. Please try again.";
+		}
 
-	// set up variables
-	$strMessage = "";
-	$strUserName = "";
-	$strUserEmail = "";
-	$strUserAddress = "";
-	$strUserCity = "";
-	$strUserState = "";
-	$strUserZip = "";
-	$strUserCountry = "";
-	$strUserPhone = "";
-	$strUserCompany = "";
-	$bIsAdmin = "";
+		
+		
+		
+	}
 
 		
 
@@ -92,6 +121,8 @@
 			$bIsAdmin = $results->user_is_admin;
 	
 		}else{
+			echo $strUserName;
+			exit();
 			$strMessage = "This user doesn't exist!";
 		}
 	}

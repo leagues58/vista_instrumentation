@@ -13,7 +13,7 @@
 		<?php
 			if(!empty($strMessage)) {
 				echo $strMessage;
-			} else {
+			}
 		?>
 
 			<h3>User Info</h3>
@@ -57,15 +57,14 @@
 					</tr>
 				</table>
 
-				<input type="submit" name="">
-				<br><br>
-				<input type="submit" name="resetpassword" value="Reset Password">
+				<input type="submit" name="infosubmit" value="Submit">
+			</form>
+			<br><br>
+			
+			<form method="POST">
+				<input type="submit" name="passwordsubmit" value="Reset Password">
 			</form>
 
-
-		<?php
-			}
-		?>
 	</body>
 
 
