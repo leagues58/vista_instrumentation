@@ -17,7 +17,7 @@
 		?>
 
 			<h3>User Info</h3>
-			<form action = "editUser.php?<?=$lngUserID?>" method="POST">
+			<form action = "editUser.php?id=<?=$lngUserID?>" method="POST">
 				<table>
 					<tr>
 						<th>Name:</th>
@@ -61,7 +61,7 @@
 			</form>
 			<br><br>
 			
-			<form method="POST">
+			<form action = "editUser.php?id=<?=$lngUserID?>" method="POST">
 				<input type="submit" name="passwordsubmit" value="Reset Password">
 			</form>
 
