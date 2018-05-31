@@ -10,6 +10,19 @@
 		<title>Notes: RMA <?= $lngRMAID?></title>
 
 		<link rel="stylesheet" type="text/css" href="assets/insidecss.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		
+		<script>
+			$(document).ready(function(){
+				$('.deleteNote').click(function(){
+					$('input[name=delete]').val = this.id;
+					console.log(this.id);
+					console.log($('input[name=delete]').val);
+					$('form').submit();
+				});
+				
+			});		
+		</script>
 	</head>	
 
 
@@ -21,13 +34,11 @@
 
 		<?php
 			while($results = $records->fetch(PDO::FETCH_OBJ)) { ?>
-		<div class="note">
+		<div class="note" id="<?=$results->note_id?>">
 			<?= $results->note_text?>
 			<p class="date"><?= $results->note_date_entered?></p>
-			<a href="#" onclick="">Edit</a>
-			<a href="#" onclick="">Delete</a>
-			
-			
+			<a href="#" >Edit</a>
+			<a href="#" class="deleteNote" id="<?=$results->note_id?>">Delete</a>
 
 		</div>
 	
@@ -46,6 +57,7 @@
 		<form name="form1" method="POST" action="notes.php?id=<?=$lngRMAID?>">
 			<textarea name="notetext"></textarea>
 			<input type="hidden" name="rmaid" value="<?=$lngRMAID?>">
+			<input type="hidden" name="delete" value = "">
 			<input type="submit" name="sumbit">	
 		</form>
 		

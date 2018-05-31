@@ -14,7 +14,7 @@
 	$connection = database_connection();
 
 	// get user info
-	$user = gf_get_user_info($connection);
+	$user = gfGetUserInfo($connection);
 
 	// if user is not admin, redirect to normal account page
 	if(!isset($user['user_is_admin'])) {
@@ -37,6 +37,7 @@
 			$strMessage = "Unable to create new user.  Please try again";
 		}
 	}
+	
 
 
 
@@ -167,7 +168,7 @@
 					<td>Yes</td>	
 				<?php }
 				?>
-			<td><a href="#" onclick='window.open("notes.php?id=<?= $results->rma_id?>", "", "resizable=yes, width=800, height=600px top=50, left=200");'>Notes</a</td>
+			<td><a href="#" onclick='window.open("notes.php?id=<?= $results->rma_id?>", "", "resizable=yes, width=800, height=600px top=50, left=200");'>Notes</a></td>
 				</tr>
 							
 				<?php

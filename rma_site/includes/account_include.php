@@ -27,7 +27,7 @@
 	$connection = database_connection();
 
 	// get user info
-	$user = gf_get_user_info($connection);
+	$user = gfGetUserInfo($connection);
 
 	// see if form is submitted and handle if so
 	if(!empty($_POST['vehicle']) && !empty($_POST['description']) && !empty($_POST['part'])){

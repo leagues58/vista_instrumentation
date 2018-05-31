@@ -17,7 +17,7 @@
 	$connection = database_connection();
 	
 	// get user info
-	$user = gf_get_user_info($connection);
+	$user = gfGetUserInfo($connection);
 
 
 	// declare variables
@@ -72,9 +72,9 @@
 		}
 
 		$strSQL = 	"INSERT INTO note_table
-						(nh_id, note_text, note_date_entered, note_date_changed)
+						(nh_id, note_text, note_date_entered, note_date_changed, note_displayed)
 					VALUES
-						(:nhid, :notetext, :dateentered, :datechanged)";
+						(:nhid, :notetext, :dateentered, :datechanged, 1)";
 
 		$records = $connection->prepare($strSQL);
 
@@ -89,25 +89,33 @@
 			$message = "Could not add note.  Please try again.";
 		}
 	}
+	
+	// check if delete note form was submitted
+	if(!empty($_POST['delete'])){
+		echo $_POST['delete'];
+		
+		
+	}
 
 
 
 
 	// load in all the notes
 	$strSQL = 	"SELECT 
-					nht.nh_id, nt.note_text, nt.note_date_entered
+					nht.nh_id, nt.note_id, nt.note_text, nt.note_date_entered
 				FROM rma_table rt
 				LEFT JOIN note_header_table nht 
 					ON rt.rma_id = nht.rma_id
 				LEFT JOIN note_table nt
 					ON nht.nh_id = nt.nh_id
 				WHERE 
-					nht.rma_id = :id";
+					nht.rma_id = :id
+					AND nt.note_displayed = 1 ";
 
 	$records = $connection->prepare($strSQL);
 	$records->bindParam(':id', $lngRMAID);
 	try {
-		$records->execute();	
+		$records->execute();
 	} catch(PDOException $e) {
 		$message = "There are no notes for the RMA yet.";
 	}
